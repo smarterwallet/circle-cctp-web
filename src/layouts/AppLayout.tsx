@@ -1,4 +1,4 @@
-import Nav from 'components/Nav/Nav'
+import ToolBar from 'components/ToolBar'
 import PageLayout from 'layouts/PageLayout'
 
 interface AppLayoutProps {
@@ -7,10 +7,10 @@ interface AppLayoutProps {
 
 const AppLayout = ({ children }: AppLayoutProps) => (
   <div className="flex min-h-screen flex-col">
-    <Nav />
     <main className="flex-1">
       <PageLayout>{children}</PageLayout>
     </main>
+    <ToolBar />
   </div>
 )
 

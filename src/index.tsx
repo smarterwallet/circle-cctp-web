@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/order */
 import React from 'react'
 
 import { createRoot } from 'react-dom/client'
@@ -5,6 +7,13 @@ import { createRoot } from 'react-dom/client'
 import App from 'App'
 import reportWebVitals from 'reportWebVitals'
 import 'styles/tailwind.css'
+import '@rainbow-me/rainbowkit/styles.css'
+
+import { WagmiConfig } from 'wagmi'
+
+import { chains, wagmiConfig } from 'config/wagmi'
+
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 
 const element = document.getElementById('root')
 if (element === null) throw new Error('Root container missing in index.html')
@@ -12,7 +21,11 @@ if (element === null) throw new Error('Root container missing in index.html')
 const root = createRoot(element)
 root.render(
   <React.StrictMode>
-    <App />
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains} coolMode modalSize="compact">
+        <App />
+      </RainbowKitProvider>
+    </WagmiConfig>
   </React.StrictMode>
 )
 

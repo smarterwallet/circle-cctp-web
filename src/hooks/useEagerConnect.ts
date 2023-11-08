@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 // https://github.com/Uniswap/interface/blob/13d7d2c99235aacd199641a9bfcae8aa6f7d94ae/src/hooks/web3.ts#L19
 import { useEffect } from 'react'
 

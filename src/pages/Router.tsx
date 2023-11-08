@@ -2,35 +2,47 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import AppLayout from 'layouts/AppLayout'
 
-import Redeem from './Redeem/Redeem'
-import Send from './Send/Send'
-import Transactions from './Transactions/Transactions'
+import { IosAppsIcon, SettingsIcon, WalletIcon } from '../assets'
+
+import { Demand, Home, Settings } from './index'
+
+// import Redeem from './Redeem/Redeem'
+// import Send from './Send/Send'
+// import Transactions from './Transactions/Transactions'
 
 export interface RouteConfig {
   path: string
   label: string
   component: React.ComponentType
   nav: boolean
+  icon?: string
+  description?: string
 }
 
 export const routes: RouteConfig[] = [
   {
     path: '/',
-    label: 'Transfer',
-    component: Send,
+    label: 'Home',
+    component: Home,
     nav: true,
+    icon: WalletIcon,
+    description: 'Wallet',
   },
   {
-    path: '/redeem',
-    label: 'Redeem',
-    component: Redeem,
-    nav: false,
+    path: '/demand',
+    label: 'Demand',
+    component: Demand,
+    nav: true,
+    icon: IosAppsIcon,
+    description: 'Demand',
   },
   {
-    path: '/transactions',
-    label: 'Transactions',
-    component: Transactions,
-    nav: false,
+    path: '/settings',
+    label: 'Settings',
+    component: Settings,
+    nav: true,
+    icon: SettingsIcon,
+    description: 'Settings',
   },
 ]
 

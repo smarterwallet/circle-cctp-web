@@ -66,6 +66,7 @@ module.exports = {
     'sonarjs/no-identical-functions': 'off',
     'sonarjs/no-duplicate-string': 'off',
     'sonarjs/cognitive-complexity': 'off',
+    'import/no-unresolved': 'off',
   },
   overrides: [
     {
@@ -85,7 +86,9 @@ module.exports = {
         'plugin:import/typescript',
       ],
       rules: {
-        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/consistent-type-imports': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
