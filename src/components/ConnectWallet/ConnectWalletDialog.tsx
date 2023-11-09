@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material'
 
-import IconMetaMask from 'assets/icon-metamask.png'
+// import IconMetaMask from 'assets/icon-metamask.png'
 import ConnectWalletDialogButton from 'components/ConnectWallet/ConnectWalletDialogButton'
 import { injected } from 'components/Wallet/Connectors'
 
@@ -29,7 +29,7 @@ const ConnectWalletDialog: React.FC<Props> = ({
           onClick={() => handleConnect(injected)}
           subtitle="Connect using MetaMask"
           title="MetaMask"
-          imgSrc={IconMetaMask}
+          // imgSrc={IconMetaMask}
         />
       </DialogContent>
 
