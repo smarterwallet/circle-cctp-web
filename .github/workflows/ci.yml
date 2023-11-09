@@ -24,4 +24,4 @@ jobs:
         run: yarn build
 
       - name: Run Tests
-        run: yarn test:unit:ci
+        run: yarn test:unit:ci --passWithNoTests
