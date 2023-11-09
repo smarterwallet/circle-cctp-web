@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "circle-cctp-web",
   "author": "GrayJiang",
-  "homepage": "./",
   "license": "MIT",
   "private": true,
   "scripts": {
