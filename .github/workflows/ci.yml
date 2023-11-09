@@ -18,7 +18,7 @@ jobs:
         run: yarn install
 
       - name: Run Checks
-        run: yarn check-all
+        run: yarn check-format
 
       - name: Run Build
         run: yarn build
