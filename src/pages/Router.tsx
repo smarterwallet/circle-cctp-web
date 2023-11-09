@@ -6,10 +6,6 @@ import { IosAppsIcon, SettingsIcon, WalletIcon } from '../assets'
 
 import { Demand, Home, Settings } from './index'
 
-// import Redeem from './Redeem/Redeem'
-// import Send from './Send/Send'
-// import Transactions from './Transactions/Transactions'
-
 export interface RouteConfig {
   path: string
   label: string

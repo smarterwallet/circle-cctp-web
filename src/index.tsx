@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/order */
 import React from 'react'
+import 'polyfills'
 
 import { createRoot } from 'react-dom/client'
 
