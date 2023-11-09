@@ -128,4 +128,5 @@ typechain --target=ethers-v5 --out-dir src/typechain src/abis/*.json
 ```
 
 This generates `typechain` folder under `src` containing contract types to be used by our hooks
+
 # circle-cctp-web
