@@ -17,8 +17,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      # - name: Run Checks
-      #   run: yarn check-format
+      - name: Run Checks
+        run: yarn check-all
 
       - name: Run Build
         run: yarn build
