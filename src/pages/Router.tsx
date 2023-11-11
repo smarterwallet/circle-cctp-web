@@ -5,7 +5,6 @@ import AppLayout from 'layouts/AppLayout'
 import { IosAppsIcon, SettingsIcon, WalletIcon } from '../assets'
 
 import { Demand, Home, Settings } from './index'
-import TransactionDetail from './Home/components/TransactionDetail'
 
 export interface RouteConfig {
   path: string

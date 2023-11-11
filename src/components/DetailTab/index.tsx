@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Tabs, Swiper, Avatar } from 'antd-mobile'
+import { Tabs, Swiper } from 'antd-mobile'
 import { SwiperRef } from 'antd-mobile/es/components/swiper'
 import BaseListItem from 'components/BaseListItem'
 import { DefaultAvatar } from 'assets'

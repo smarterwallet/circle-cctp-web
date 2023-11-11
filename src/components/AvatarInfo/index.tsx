@@ -1,7 +1,7 @@
 import React from 'react'
 import { DefaultAvatar } from '../../assets'
 import { Avatar, Space } from 'antd-mobile'
-import { useAccount, useBalance, useNetwork } from 'wagmi'
+import { useAccount, useBalance } from 'wagmi'
 import { truncateString } from '../../utils'
 // import { useUSDCBalance } from 'hooks/useUsdcBalance'
 
@@ -9,7 +9,7 @@ type Props = {}
 
 const AvatarInfo: React.FC<Props> = () => {
   const { address, isDisconnected } = useAccount()
-  const { chain, chains } = useNetwork()
+  // const { chain, chains } = useNetwork()
   // const { data: usdcBalance } = useUSDCBalance(chain?.name)
   // console.log(usdcBalance)
 

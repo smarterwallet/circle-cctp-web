@@ -9,7 +9,7 @@ import { isSupportedNetwork } from 'utils'
 
 const Home: React.FC<{}> = () => {
   const { isConnected } = useAccount()
-  const { chain, chains } = useNetwork()
+  const { chain } = useNetwork()
   if (isConnected && isSupportedNetwork(chain?.id)) return <TransactionDetail />
   return (
     <>

@@ -18,7 +18,7 @@ const BaseListItem: React.FC<Props> = ({
   extra,
 }) => {
   const handleDetailClick = () => {
-    console.log('clicked')
+    // console.log('clicked')
   }
   return (
     <>
