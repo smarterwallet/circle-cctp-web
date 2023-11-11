@@ -17,17 +17,19 @@ const ToolBar: React.FC<{}> = () => {
         }}
         className="flex w-full justify-between xs:h-[112px] md:h-[160px]"
       >
-        {routes.map((route) => (
-          <Link to={route.path} key={route.label}>
-            <div className="flex flex-col items-center justify-center xs:h-[120px] xs:w-[127px] md:h-[160px] md:w-[193px]">
-              <Image
-                src={route.icon}
-                className="mb-2 xs:h-[53px] xs:w-[53px] md:h-[83px] md:w-[83px]"
-              />
-              <div className="text-center text-xl">{route.description}</div>
-            </div>
-          </Link>
-        ))}
+        {routes
+          .filter((i) => i.nav)
+          .map((route) => (
+            <Link to={route.path} key={route.label}>
+              <div className="flex flex-col items-center justify-center xs:h-[120px] xs:w-[127px] md:h-[160px] md:w-[193px]">
+                <Image
+                  src={route.icon}
+                  className="mb-2 xs:h-[53px] xs:w-[53px] md:h-[83px] md:w-[83px]"
+                />
+                <div className="text-center text-xl">{route.description}</div>
+              </div>
+            </Link>
+          ))}
       </div>
     </>
   )
