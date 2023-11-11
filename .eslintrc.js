@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     radix: 'error',
     'import/order': [
-      'warn',
+      'off',
       {
         groups: [
           'builtin',
@@ -53,7 +53,7 @@ module.exports = {
     ],
     'no-console': ['warn', { allow: ['debug', 'warn', 'error'] }],
     'sort-imports': [
-      'warn',
+      'off',
       {
         ignoreCase: true,
         ignoreDeclarationSort: true,
