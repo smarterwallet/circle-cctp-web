@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { SUPPORTED_NETWORKS } from '../constants'
+
 /**
  *
  * @param str string to truncate
@@ -16,8 +18,7 @@ function truncateString(str: `0x${string}` | undefined | string): string {
 
 function isSupportedNetwork(chainId?: number) {
   if (chainId === undefined) return false
-  const supportedNetworks = [5, 31337, 43113] // goerli, hardhat, avalancheFuji
-  return supportedNetworks.includes(chainId)
+  return SUPPORTED_NETWORKS.includes(chainId)
 }
 
 export { truncateString, isSupportedNetwork }

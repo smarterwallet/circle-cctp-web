@@ -16,7 +16,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const isLogin = isConnected && isSupportedNetwork(chain?.id)
   useEffect(() => {
     !isSupportedNetwork(chain?.id) && Toast.show({ content: 'Wrong Network!' })
-  }, [chain])
+  }, [chain?.id])
   return (
     <div
       className="flex min-h-screen flex-col"
