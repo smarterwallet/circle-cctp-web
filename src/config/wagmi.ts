@@ -20,8 +20,7 @@ const env = process.env as unknown as Env
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    avalancheFuji,
-    ...(env.REACT_APP_ENABLE_LOCAL_NETWORK ? [hardhat] : []),
+    ...(env.REACT_APP_ENABLE_TESTNETS ? [avalancheFuji] : []),
     ...(env.REACT_APP_ENABLE_TESTNETS ? [goerli] : []),
   ],
   [alchemyProvider({ apiKey: env.REACT_APP_ALCHEMY_ID }), publicProvider()]
