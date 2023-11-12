@@ -15,7 +15,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const { chain } = useNetwork()
   const isLogin = isConnected && isSupportedNetwork(chain?.id)
   useEffect(() => {
-    !isSupportedNetwork(chain?.id) && Toast.show({ content: 'Wrong Network!' })
+    !isSupportedNetwork(chain?.id) &&
+      Toast.show({ content: 'Unsupported Chain!' })
   }, [chain?.id])
   return (
     <div
