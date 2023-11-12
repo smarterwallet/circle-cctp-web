@@ -19,10 +19,7 @@ const AvatarInfo: React.FC<Props> = () => {
     <>
       <Space block direction="vertical">
         <div className="flex items-center">
-          <Avatar
-            src={DefaultAvatar}
-            className="xs:h-[64px] xs:w-[64px] xs:rounded-[32px]"
-          />
+          <Avatar src={DefaultAvatar} className="h-18 w-18 rounded-full" />
           <div className="ml-4">
             <p className="text-lg font-semibold text-circle-green">User</p>
             <p className="text-sm  text-licorice-600">

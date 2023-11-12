@@ -15,12 +15,16 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const { chain } = useNetwork()
   const isLogin = isConnected && isSupportedNetwork(chain?.id)
   useEffect(() => {
-    !isSupportedNetwork(chain?.id) && Toast.show({ content: 'Wrong Network!' })
+    !isSupportedNetwork(chain?.id) &&
+      Toast.show({ content: 'Unsupported Chain!' })
   }, [chain?.id])
   return (
     <div
       className="flex min-h-screen flex-col"
-      style={{ backgroundImage: `url(${isLogin ? GreenBg : HomeBg})` }}
+      style={{
+        backgroundImage: `url(${isLogin ? GreenBg : HomeBg})`,
+        backgroundSize: 'cover',
+      }}
     >
       <main className="flex-1">
         <PageLayout>{children}</PageLayout>
