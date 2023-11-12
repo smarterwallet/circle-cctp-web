@@ -1,5 +1,4 @@
 export enum EUsdcAddress {
-  Goerli = '0xd35CCeEAD182dcee0F148EbaC9447DA2c4D449c4',
-  'Avalanche-fuji' = '0xAF82969ECF299c1f1Bb5e1D12dDAcc9027431160',
-  Hardhat = '',
+  Goerli = '0x07865c6E87B9F70255377e024ace6630C1Eaa37F',
+  'Avalanche-fuji' = '0x5425890298aed601595a70AB815c96711a31Bc65',
 }

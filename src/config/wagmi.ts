@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig } from 'wagmi'
-import { goerli, hardhat, avalancheFuji } from 'wagmi/chains'
+import { goerli, avalancheFuji } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 
@@ -20,8 +20,7 @@ const env = process.env as unknown as Env
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    avalancheFuji,
-    ...(env.REACT_APP_ENABLE_LOCAL_NETWORK ? [hardhat] : []),
+    ...(env.REACT_APP_ENABLE_TESTNETS ? [avalancheFuji] : []),
     ...(env.REACT_APP_ENABLE_TESTNETS ? [goerli] : []),
   ],
   [alchemyProvider({ apiKey: env.REACT_APP_ALCHEMY_ID }), publicProvider()]
