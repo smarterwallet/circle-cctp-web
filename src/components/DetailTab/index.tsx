@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react'
 import { Tabs, Swiper } from 'antd-mobile'
 import { SwiperRef } from 'antd-mobile/es/components/swiper'
 import BaseListItem from 'components/BaseListItem'
-import { DefaultAvatar } from 'assets'
+import { TransferIcon, UsdcIcon } from 'assets'
+import { useUSDCBalance } from 'hooks/useUsdcBalance'
 
 type Props = {}
 
@@ -12,6 +13,7 @@ const tabItems = [
 ]
 
 const DetailTab: React.FC<Props> = () => {
+  const { balance } = useUSDCBalance()
   const swiperRef = useRef<SwiperRef>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   return (
@@ -41,23 +43,23 @@ const DetailTab: React.FC<Props> = () => {
       >
         <Swiper.Item>
           <BaseListItem
-            iconSrc={DefaultAvatar}
+            iconSrc={UsdcIcon}
             iconSize={64}
             title="USDC"
             description="Stablecoin"
             extra={
               <>
                 <p className="text-lg font-semibold text-circle-green">
-                  $48.21
+                  ${balance}
                 </p>
-                <p className="text-sm  text-licorice-600">48.21</p>
+                <p className="text-sm  text-licorice-600">{balance}</p>
               </>
             }
           />
         </Swiper.Item>
         <Swiper.Item>
           <BaseListItem
-            iconSrc={DefaultAvatar}
+            iconSrc={TransferIcon}
             iconSize={64}
             title="USDC"
             description="Stablecoin"

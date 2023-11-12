@@ -13,9 +13,7 @@ import { RightOutline } from 'antd-mobile-icons'
 const ConnectButton = () => {
   return (
     <>
-      <p className="xs:mb-4 xs:text-4xl md:mb-6 md:text-7xl">
-        Connect your wallet
-      </p>
+      <p className="mb-4 text-3xl">Connect your wallet</p>
       <Connector.Custom>
         {({
           account,
@@ -54,15 +52,12 @@ const ConnectButton = () => {
                       style={{
                         backgroundColor: 'rgba(229, 218, 235, 0.7)',
                       }}
-                      className="background-color: rgb(226 232 240) xs:h-[70px] xs:w-[300px] rounded-[35px]" // 这里定义了宽、高、背景色、文字颜色和圆角
+                      className="background-color: rgb(226 232 240) h-19 w-80 rounded-lg p-2" // 这里定义了宽、高、背景色、文字颜色和圆角
                     >
                       <div className="flex space-x-8">
-                        <Image
-                          src={MetaMaskIcon}
-                          className="xs:w-[200px] xs:h-[40px] ml-4"
-                        />
+                        <Image src={MetaMaskIcon} className="h-11 w-48 ml-4" />
                         <RightOutline
-                          className="text-2xl my-auto  "
+                          className="text-2xl my-auto"
                           style={{ color: 'rgb(103 232 249)' }}
                         />
                       </div>
@@ -77,10 +72,10 @@ const ConnectButton = () => {
                       style={{
                         backgroundColor: 'rgba(229, 218, 235, 0.7)',
                       }}
-                      className="background-color: rgb(226 232 240) xs:h-[70px] xs:w-[300px] md:w-[400px] rounded-[35px]" // 这里定义了宽、高、背景色、文字颜色和圆角
+                      className="background-color: rgb(226 232 240) h-19 w-80 rounded-lg p-2" // 这里定义了宽、高、背景色、文字颜色和圆角
                     >
                       <div className="flex space-x-8 text-2xl pl-12">
-                        Wrong Network!
+                        Unsupported Chain!
                       </div>
                     </button>
                   )
@@ -95,7 +90,7 @@ const ConnectButton = () => {
                         alignItems: 'center',
                         backgroundColor: 'rgba(229, 218, 235, 0.7)',
                       }}
-                      className="xs:h-[30px]  rounded-[20px] px-2"
+                      className="h-[30px]  rounded-[20px] px-2"
                       type="button"
                     >
                       {chain.hasIcon && (
@@ -142,46 +137,6 @@ const ConnectButton = () => {
           )
         }}
       </Connector.Custom>
-
-      {/* <Connector.Custom>
-        {({
-          account,
-          chain,
-          openAccountModal,
-          openChainModal,
-          openConnectModal,
-          authenticationStatus,
-          mounted,
-        }) => {
-          const ready = mounted && authenticationStatus !== 'loading'
-          const connected =
-            ready &&
-            account &&
-            chain &&
-            (!authenticationStatus || authenticationStatus === 'authenticated')
-
-          return (
-            <button
-              onClick={openConnectModal}
-              style={{
-                backgroundColor: 'rgba(229, 218, 235, 0.7)',
-              }}
-              className="background-color: rgb(226 232 240) xs:h-[70px] xs:w-[300px] rounded-[35px]" // 这里定义了宽、高、背景色、文字颜色和圆角
-            >
-              <div className="flex space-x-8">
-                <Image
-                  src={MetaMaskIcon}
-                  className="xs:w-[200px] xs:h-[40px] ml-4"
-                />
-                <RightOutline
-                  className="text-2xl my-auto  "
-                  style={{ color: 'rgb(103 232 249)' }}
-                />
-              </div>
-            </button>
-          )
-        }}
-      </Connector.Custom> */}
     </>
   )
 }

@@ -26,7 +26,7 @@ const BaseListItem: React.FC<Props> = ({
         <div className="flex items-center">
           <Avatar
             src={iconSrc}
-            className={`xs:h-[${iconSize}px] xs:w-[${iconSize}px] xs:rounded-[${
+            className={`h-[${iconSize}px] w-[${iconSize}px] rounded-[${
               iconSize / 2
             }px]`}
           />
