@@ -4,7 +4,7 @@ import AppLayout from 'layouts/AppLayout'
 
 import { IosAppsIcon, SettingsIcon, WalletIcon } from '../assets'
 
-import { Demand, Home, Settings } from './index'
+import { Demand, Home, NotFound, Settings, Solution } from './index'
 
 export interface RouteConfig {
   path: string
@@ -39,6 +39,20 @@ export const routes: RouteConfig[] = [
     nav: true,
     icon: SettingsIcon,
     description: 'Settings',
+  },
+  {
+    path: '/solution',
+    label: 'Solution',
+    component: Solution,
+    nav: false,
+    description: 'Solution',
+  },
+  {
+    path: '/*',
+    label: 'NotFound',
+    component: NotFound,
+    nav: false,
+    description: 'NotFound',
   },
 ]
 

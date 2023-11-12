@@ -7,6 +7,9 @@ import WalletIcon from './wallet.png'
 import DefaultAvatar from './avatar.jpeg'
 import GreenBg from './green-bg.png'
 import HomeBg from './home-bg.png'
+import UsdcIcon from './usdc.png'
+import CircleIcon from './circle-icon 1.png'
+import TransferIcon from './transfer-cion.png'
 
 export {
   IosAppsIcon,
@@ -18,4 +21,7 @@ export {
   DefaultAvatar,
   GreenBg,
   HomeBg,
+  UsdcIcon,
+  CircleIcon,
+  TransferIcon,
 }

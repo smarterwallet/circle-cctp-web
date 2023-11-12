@@ -20,7 +20,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div
       className="flex min-h-screen flex-col"
-      style={{ backgroundImage: `url(${isLogin ? GreenBg : HomeBg})` }}
+      style={{
+        backgroundImage: `url(${isLogin ? GreenBg : HomeBg})`,
+        backgroundSize: 'cover',
+      }}
     >
       <main className="flex-1">
         <PageLayout>{children}</PageLayout>
