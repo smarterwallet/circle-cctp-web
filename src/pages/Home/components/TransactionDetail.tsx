@@ -1,14 +1,16 @@
 import React from 'react'
 import { AvatarInfo, DetailTab } from '../../../components'
+import { useUSDCBalance } from 'hooks/useUsdcBalance'
 
 type Props = {}
 
 const TransactionDetail: React.FC<{}> = (props: Props) => {
+  const { balance } = useUSDCBalance()
   const renderOverview = () => {
     return (
       <>
         <div className="mt-8 text-center text-5xl font-semibold text-circle-green">
-          48.21
+          {balance}
         </div>
         <div className="mt-1 text-center text-xl font-semibold text-circle-green">
           $USDC
