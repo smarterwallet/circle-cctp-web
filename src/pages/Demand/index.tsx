@@ -8,13 +8,17 @@ import { useUSDCBalance } from 'hooks/useUsdcBalance'
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
   const [context, setContext] = useState([
-    { text: 'What would you need?', type: '' },
+    { text: 'What would you need?', type: 'response' },
   ])
   const { balance } = useUSDCBalance()
   console.log(balance)
   const handleSend = () => {
+    if (!inputMessage) {
+      return
+    }
     setContext((pre) => [...pre, { text: inputMessage, type: 'question' }])
-    setInputMessage('')
+
+    setInputMessage(() => '')
   }
   console.log(inputMessage)
   return (
@@ -24,9 +28,26 @@ const Demand: React.FC<{}> = () => {
           Demand
         </div>
         <div className="flex flex-col h-full mt-3">
-          {context.map((item, index) => {
-            return <Context key={index} text={item.text} type={item.type} />
-          })}
+          <div className="overflow-auto max-h-[calc(100vh-250px)]">
+            {context.map((item, index) => {
+              return (
+                <div
+                  className={`flex ${
+                    item.type === 'response' ? 'justify-start' : 'justify-end'
+                  }`}
+                  key={index}
+                >
+                  <Context
+                    key={index}
+                    text={item.text}
+                    type={item.type}
+                    button={true}
+                  />
+                </div>
+              )
+            })}
+          </div>
+
           <div
             className="mb-4"
             style={{ position: 'fixed', bottom: 150, width: '90%' }}
