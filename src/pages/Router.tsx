@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import AppLayout from 'layouts/AppLayout'
 
 import { IosAppsIcon, SettingsIcon, WalletIcon } from '../assets'
 
-import { Demand, Home, Settings } from './index'
+import { Demand, Home, NotFound, Settings, Solution } from './index'
 
 export interface RouteConfig {
   path: string
   label: string
-  component: React.ComponentType
+  component: React.FC<any>
   nav: boolean
   icon?: string
   description?: string
@@ -39,6 +40,20 @@ export const routes: RouteConfig[] = [
     nav: true,
     icon: SettingsIcon,
     description: 'Settings',
+  },
+  {
+    path: '/solution',
+    label: 'Solution',
+    component: Solution,
+    nav: false,
+    description: 'Solution',
+  },
+  {
+    path: '/*',
+    label: 'NotFound',
+    component: NotFound,
+    nav: false,
+    description: 'NotFound',
   },
 ]
 

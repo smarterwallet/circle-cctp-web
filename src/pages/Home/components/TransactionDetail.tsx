@@ -1,16 +1,18 @@
 import React from 'react'
 import { AvatarInfo, DetailTab } from '../../../components'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
+import { useNetwork } from 'wagmi'
 
 type Props = {}
 
 const TransactionDetail: React.FC<{}> = (props: Props) => {
-  const { balance } = useUSDCBalance()
+  const { goerliUSDC, avaxUSDC } = useUSDCBalance()
+  const { chain } = useNetwork()
   const renderOverview = () => {
     return (
       <>
         <div className="mt-8 text-center text-5xl font-semibold text-circle-green">
-          {balance}
+          {chain?.id === 5 ? goerliUSDC : avaxUSDC}
         </div>
         <div className="mt-1 text-center text-xl font-semibold text-circle-green">
           $USDC

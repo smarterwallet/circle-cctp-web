@@ -16,10 +16,6 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
-      screens: {
-        '2xs': '375px', // 例如，适用于较小的手机
-        xs: '414px', // 特别为 iPhone 8 Plus 等设备设置
-      },
       colors: {
         'circle-green': 'rgba(13, 88, 112, 1)',
       },
