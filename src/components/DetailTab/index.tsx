@@ -4,6 +4,7 @@ import { SwiperRef } from 'antd-mobile/es/components/swiper'
 import BaseListItem from 'components/BaseListItem'
 import { TransferIcon, UsdcIcon } from 'assets'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
+import { useNetwork } from 'wagmi'
 
 type Props = {}
 
@@ -13,7 +14,8 @@ const tabItems = [
 ]
 
 const DetailTab: React.FC<Props> = () => {
-  const { balance } = useUSDCBalance()
+  const { goerliUSDC, avaxUSDC } = useUSDCBalance()
+  const { chain } = useNetwork()
   const swiperRef = useRef<SwiperRef>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   return (
@@ -50,9 +52,11 @@ const DetailTab: React.FC<Props> = () => {
             extra={
               <>
                 <p className="text-lg font-semibold text-circle-green">
-                  ${balance}
+                  ${chain?.id === 5 ? goerliUSDC : avaxUSDC}
                 </p>
-                <p className="text-sm  text-licorice-600">{balance}</p>
+                <p className="text-sm  text-licorice-600">
+                  {chain?.id === 5 ? goerliUSDC : avaxUSDC}
+                </p>
               </>
             }
           />
