@@ -219,11 +219,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "newLocalMinter",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "newLocalMinter", "type": "address" }
     ],
     "name": "addLocalMinter",
     "outputs": [],
@@ -232,16 +228,8 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint32",
-        "name": "domain",
-        "type": "uint32"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "tokenMessenger",
-        "type": "bytes32"
-      }
+      { "internalType": "uint32", "name": "domain", "type": "uint32" },
+      { "internalType": "bytes32", "name": "tokenMessenger", "type": "bytes32" }
     ],
     "name": "addRemoteTokenMessenger",
     "outputs": [],
@@ -250,60 +238,32 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" },
       {
         "internalType": "uint32",
         "name": "destinationDomain",
         "type": "uint32"
       },
-      {
-        "internalType": "bytes32",
-        "name": "mintRecipient",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "burnToken",
-        "type": "address"
-      }
+      { "internalType": "bytes32", "name": "mintRecipient", "type": "bytes32" },
+      { "internalType": "address", "name": "burnToken", "type": "address" }
     ],
     "name": "depositForBurn",
     "outputs": [
-      {
-        "internalType": "uint64",
-        "name": "_nonce",
-        "type": "uint64"
-      }
+      { "internalType": "uint64", "name": "_nonce", "type": "uint64" }
     ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" },
       {
         "internalType": "uint32",
         "name": "destinationDomain",
         "type": "uint32"
       },
-      {
-        "internalType": "bytes32",
-        "name": "mintRecipient",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "burnToken",
-        "type": "address"
-      },
+      { "internalType": "bytes32", "name": "mintRecipient", "type": "bytes32" },
+      { "internalType": "address", "name": "burnToken", "type": "address" },
       {
         "internalType": "bytes32",
         "name": "destinationCaller",
@@ -312,41 +272,19 @@
     ],
     "name": "depositForBurnWithCaller",
     "outputs": [
-      {
-        "internalType": "uint64",
-        "name": "nonce",
-        "type": "uint64"
-      }
+      { "internalType": "uint64", "name": "nonce", "type": "uint64" }
     ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "uint32",
-        "name": "remoteDomain",
-        "type": "uint32"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "sender",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "bytes",
-        "name": "messageBody",
-        "type": "bytes"
-      }
+      { "internalType": "uint32", "name": "remoteDomain", "type": "uint32" },
+      { "internalType": "bytes32", "name": "sender", "type": "bytes32" },
+      { "internalType": "bytes", "name": "messageBody", "type": "bytes" }
     ],
     "name": "handleReceiveMessage",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -367,11 +305,7 @@
     "inputs": [],
     "name": "localMinter",
     "outputs": [
-      {
-        "internalType": "contract ITokenMinter",
-        "name": "",
-        "type": "address"
-      }
+      { "internalType": "contract ITokenMinter", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -379,58 +313,28 @@
   {
     "inputs": [],
     "name": "messageBodyVersion",
-    "outputs": [
-      {
-        "internalType": "uint32",
-        "name": "",
-        "type": "uint32"
-      }
-    ],
+    "outputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "pendingOwner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint32",
-        "name": "",
-        "type": "uint32"
-      }
-    ],
+    "inputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
     "name": "remoteTokenMessengers",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -443,11 +347,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint32",
-        "name": "domain",
-        "type": "uint32"
-      }
+      { "internalType": "uint32", "name": "domain", "type": "uint32" }
     ],
     "name": "removeRemoteTokenMessenger",
     "outputs": [],
@@ -456,11 +356,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bytes",
-        "name": "originalMessage",
-        "type": "bytes"
-      },
+      { "internalType": "bytes", "name": "originalMessage", "type": "bytes" },
       {
         "internalType": "bytes",
         "name": "originalAttestation",
@@ -489,16 +385,8 @@
         "name": "tokenContract",
         "type": "address"
       },
-      {
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
+      { "internalType": "address", "name": "to", "type": "address" },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
     ],
     "name": "rescueERC20",
     "outputs": [],
@@ -508,23 +396,13 @@
   {
     "inputs": [],
     "name": "rescuer",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "transferOwnership",
     "outputs": [],
@@ -533,11 +411,7 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "newRescuer",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "newRescuer", "type": "address" }
     ],
     "name": "updateRescuer",
     "outputs": [],

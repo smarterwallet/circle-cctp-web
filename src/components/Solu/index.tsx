@@ -7,17 +7,14 @@ import { DownOutline } from 'antd-mobile-icons'
 
 type Props = {
   transactionDetail: {
-    nickName?: string
-    amount: number
-    receipt: string
-    transactionFees: string
-    processingTime: string
+    receiver: string
+    amount: number | string
+    token?: string
   }
 }
 
 const Solution: React.FC<Props> = ({ transactionDetail }) => {
-  // const { receipt } = transactionDetail
-
+  const { receiver, amount, token = 'USDC' } = transactionDetail
   const renderExtra = () => {
     return (
       <>
@@ -26,8 +23,8 @@ const Solution: React.FC<Props> = ({ transactionDetail }) => {
         </div>
         <div className="flex justify-between">
           <div className="text-center text-circle-green">
-            <span className="font-semibold">Transfer</span> 100 $USDC in
-            Avalance to 99.76 $USDC in Ethereum
+            <span className="font-semibold">Cross chain</span> {amount} ${token}{' '}
+            in Goerli to Avax
           </div>
           <div className="flex w-12 flex-col items-center px-12">
             <Image src={CircleIcon} width={24} height={24} />
@@ -37,8 +34,8 @@ const Solution: React.FC<Props> = ({ transactionDetail }) => {
         <DownOutline className="mx-auto my-4 text-xl text-circle-green" />
         <div className="flex justify-between">
           <div className="text-center text-circle-green">
-            <span className="font-semibold">Send</span> 99.76 $USDC to Alice on
-            Ethereum
+            <span className="font-semibold">Send</span> {amount} ${token} to{' '}
+            {truncateString(receiver || '0x00')}
           </div>
           <div className="flex w-12 flex-col items-center px-12">
             <Image src={TransferIcon} width={24} height={24} />
@@ -50,21 +47,11 @@ const Solution: React.FC<Props> = ({ transactionDetail }) => {
   }
   return (
     <div>
-      {/* <p>Send $USDC to {nickName ? nickName : truncateString(receipt)}</p> */}
-      <p className=" mx-auto mb-4 w-11/12 text-xl font-semibold text-circle-green">
-        Send $USDC to 0x1234567890
-      </p>
       <Result
         title="Estimated Results:"
         needFooter
         extra={renderExtra()}
-        // transactionDetail={transactionDetail}
-        transactionDetail={{
-          amount: 100,
-          receipt: '0x1234567890',
-          transactionFees: '0.0001',
-          processingTime: '10 minutes',
-        }}
+        transactionDetail={transactionDetail}
       />
     </div>
   )
