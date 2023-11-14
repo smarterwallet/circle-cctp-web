@@ -5,3 +5,21 @@ export const circleAttestations = async (messageHash: string) => {
     `https://iris-api-sandbox.circle.com/v1/attestations/${messageHash}`
   )
 }
+
+export const crossChainAbstraction = async (demand: string) => {
+  const data = { category: 'crossChainAbstraction', demand: demand }
+
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://smarter-api-da.web3idea.xyz/v1/demand',
+    headers: {},
+    data: data,
+  }
+
+  const result = await request(config)
+  console.log(result)
+  return result
+}
+
+// export const demandTransfer = async (demand: string) => {}

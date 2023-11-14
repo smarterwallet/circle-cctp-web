@@ -4,23 +4,88 @@ import './style.css'
 import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
+import { crossChainAbstraction } from '../../../src/services/index'
+type Chain = 'Fuji' | 'Goerli'
+
+interface CrossChainTransfer {
+  type: 'cross-chain-transfer'
+  source_chain: Chain
+  token: string
+  amount: string
+  receiver: string
+  target_chain: Chain
+}
+
+interface ChainInternalTransfer {
+  type: 'chain-internal-transfer'
+  source_chain: Chain
+  token: string
+  amount: string
+  receiver: string
+  target_chain: Chain
+}
+
+type Operation = CrossChainTransfer | ChainInternalTransfer
+
+interface Detail {
+  reply: string
+  ops: Operation[]
+}
+
+interface Response {
+  category: string
+  detail: Detail
+}
 
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
   const [context, setContext] = useState([
-    { text: 'What would you need?', type: 'response' },
+    { text: 'What would you need?', type: 'response', button: false },
   ])
-  const { balance } = useUSDCBalance()
-  console.log(balance)
-  const handleSend = () => {
+  const [ops, setOps] = useState([])
+  const { goerliUSDC } = useUSDCBalance()
+  const { avaxUSDC } = useUSDCBalance()
+
+  console.log(`goerli ${goerliUSDC} avax ${avaxUSDC}`)
+
+  const handleSend = async () => {
     if (!inputMessage) {
       return
     }
-    setContext((pre) => [...pre, { text: inputMessage, type: 'question' }])
-
+    console.log(inputMessage)
+    setContext((pre) => [
+      ...pre,
+      { text: inputMessage, type: 'question', button: false },
+    ])
+    const demandInput =
+      `Current Goerli balance: ${goerliUSDC}USDC, Fuji balance: ${avaxUSDC}USDC. ` +
+      inputMessage
+    const result = await crossChainAbstraction(demandInput)
+    if (result !== null) {
+      const reply = result.data.detail.reply
+      const ops = result.data.detail.ops
+      setOps(() => ops)
+      setContext((pre) => [
+        ...pre,
+        { text: reply, type: 'response', button: true },
+      ])
+      console.log(context)
+    } else {
+      setContext((pre) => [
+        ...pre,
+        {
+          text: 'Sorry, insuffienct balance',
+          type: 'response',
+          button: false,
+        },
+      ])
+    }
     setInputMessage(() => '')
   }
-  console.log(inputMessage)
+  useEffect(() => {
+    setContext(() => context)
+    console.log(context)
+  }, [context, ops])
   return (
     <PageLayout>
       <div className="flex flex-col justify-between h-full w-full">
@@ -41,7 +106,7 @@ const Demand: React.FC<{}> = () => {
                     key={index}
                     text={item.text}
                     type={item.type}
-                    button={true}
+                    button={false}
                   />
                 </div>
               )

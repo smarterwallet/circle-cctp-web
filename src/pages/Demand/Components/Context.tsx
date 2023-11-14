@@ -23,7 +23,7 @@ const Context = (props: ContextProp) => {
       >
         {props.text}
       </div>
-      {props.type === 'response' && props.button && (
+      {props.button && (
         <div className="flex">
           <Button className="demand-button" onClick={handleChange}>
             Change
