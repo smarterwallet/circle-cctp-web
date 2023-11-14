@@ -4,38 +4,10 @@ import './style.css'
 import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
-import { crossChainAbstraction } from '../../../src/services/index'
-type Chain = 'Fuji' | 'Goerli'
-
-interface CrossChainTransfer {
-  type: 'cross-chain-transfer'
-  source_chain: Chain
-  token: string
-  amount: string
-  receiver: string
-  target_chain: Chain
-}
-
-interface ChainInternalTransfer {
-  type: 'chain-internal-transfer'
-  source_chain: Chain
-  token: string
-  amount: string
-  receiver: string
-  target_chain: Chain
-}
-
-type Operation = CrossChainTransfer | ChainInternalTransfer
-
-interface Detail {
-  reply: string
-  ops: Operation[]
-}
-
-interface Response {
-  category: string
-  detail: Detail
-}
+import {
+  crossChainAbstraction,
+  demandTransfer,
+} from '../../../src/services/index'
 
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
@@ -82,10 +54,10 @@ const Demand: React.FC<{}> = () => {
     }
     setInputMessage(() => '')
   }
-  useEffect(() => {
-    setContext(() => context)
-    console.log(context)
-  }, [context, ops])
+  const confirmTx = () => {
+    // const txInput = `Goerli balance: ${goerliUSDC}USDC, Fuji balance: ${avaxUSDC}USDC. I want to transfer 100USDC to Fuji 0x5134F00C95b8e794db38E1eE39397d8086cee7Ed`
+    // demandTransfer(txInput)
+  }
   return (
     <PageLayout>
       <div className="flex flex-col justify-between h-full w-full">
@@ -106,7 +78,8 @@ const Demand: React.FC<{}> = () => {
                     key={index}
                     text={item.text}
                     type={item.type}
-                    button={false}
+                    button={item.button}
+                    confirmTx={confirmTx}
                   />
                 </div>
               )

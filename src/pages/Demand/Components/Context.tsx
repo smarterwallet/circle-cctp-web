@@ -5,6 +5,7 @@ interface ContextProp {
   text: string
   type?: string
   button?: boolean
+  confirmTx: () => void
 }
 
 const Context = (props: ContextProp) => {
@@ -25,7 +26,11 @@ const Context = (props: ContextProp) => {
       </div>
       {props.button && (
         <div className="flex">
-          <Button className="demand-button" onClick={handleChange}>
+          <Button
+            className="demand-button"
+            style={{ backgroundColor: 'white' }}
+            onClick={handleChange}
+          >
             Change
           </Button>
           <Button className="demand-button" onClick={handleConfirm}>

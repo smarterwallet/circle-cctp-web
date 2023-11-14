@@ -22,4 +22,18 @@ export const crossChainAbstraction = async (demand: string) => {
   return result
 }
 
-// export const demandTransfer = async (demand: string) => {}
+export const demandTransfer = async (demand: string) => {
+  const data = { category: 'chainAbstraction-transfer', demand: demand }
+
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://smarter-api-da.web3idea.xyz/v1/demand',
+    headers: {},
+    data: data,
+  }
+
+  const result = await request(config)
+  console.log(result)
+  return result
+}
