@@ -16,6 +16,12 @@
     "incremental": true,
     "baseUrl": "./src"
   },
-  "include": ["react-app-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "react-app-env.d.ts",
+    "typings/**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*.less"
+  ],
   "exclude": ["node_modules"]
 }

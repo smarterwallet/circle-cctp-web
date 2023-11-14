@@ -9,6 +9,7 @@ import App from 'App'
 import reportWebVitals from 'reportWebVitals'
 import 'styles/tailwind.css'
 import '@rainbow-me/rainbowkit/styles.css'
+import 'antd-mobile/bundle/style.css'
 
 import { WagmiConfig } from 'wagmi'
 

@@ -1,13 +1,8 @@
-/* eslint-disable sort-imports */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig } from 'wagmi'
-import { goerli, hardhat, avalancheFuji } from 'wagmi/chains'
+import { goerli, avalancheFuji } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
-
 interface Env {
   REACT_APP_PROJECT_ID: string
   REACT_APP_ENABLE_LOCAL_NETWORK: boolean
