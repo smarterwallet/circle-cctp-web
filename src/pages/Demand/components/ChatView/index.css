@@ -1,0 +1,20 @@
+/* 聊天气泡对话的基本样式 */
+.message-item {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+/* 发送消息的样式 */
+.sent {
+  background-color: #4caf50; /* 背景色，根据需要调整 */
+  color: #fff; /* 文字颜色，根据需要调整 */
+  align-self: flex-end; /* 将发送的消息放在右侧 */
+}
+
+/* 接收消息的样式 */
+.received {
+  background-color: #e0e0e0; /* 背景色，根据需要调整 */
+  color: #000; /* 文字颜色，根据需要调整 */
+  align-self: flex-start; /* 将接收的消息放在左侧 */
+}

@@ -1,6 +1,6 @@
 import Result from 'components/Result'
 import React from 'react'
-import { truncateString } from 'utils'
+// import { truncateString } from 'utils'
 import { Image } from 'antd-mobile'
 import { CircleIcon, TransferIcon } from 'assets'
 import { DownOutline } from 'antd-mobile-icons'
