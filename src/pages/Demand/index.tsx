@@ -4,7 +4,7 @@ import './style.css'
 import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
-import { crossChainAbstraction } from '../../../src/services/index'
+import { crossChainAbstraction, AxiosResult } from '../../../src/services/index'
 import Solution from 'components/Solu'
 import { useContractWrite } from 'wagmi'
 import { erc20ABI } from '@wagmi/core'
@@ -30,7 +30,7 @@ const Demand: React.FC<{}> = () => {
   const [context, setContext] = useState([
     { text: 'What would you need?', type: 'response', button: false },
   ])
-  const [ops, setOps] = useState([])
+  const [ops, setOps] = useState<Ops[]>([])
   const { goerliUSDC } = useUSDCBalance()
   const { avaxUSDC } = useUSDCBalance()
   const [switchTx, setSwitchTx] = useState(false)
@@ -54,10 +54,10 @@ const Demand: React.FC<{}> = () => {
     const demandInput =
       `Current Goerli balance: ${goerliUSDC}USDC, Fuji balance: ${avaxUSDC}USDC. ` +
       inputMessage
-    const result = await crossChainAbstraction(demandInput)
+    const result: AxiosResult = await crossChainAbstraction(demandInput)
     if (result !== null) {
-      const reply = result.data.detail.reply as string
-      const ops = result.data.detail.ops
+      const reply: string = result.data.detail.reply
+      const ops: Ops[] = result.data.detail.ops
       setReceiver(() => ops[0].receiver)
       setAmount(() => parseInt(ops[0].amount, 10))
       setOps(() => ops)

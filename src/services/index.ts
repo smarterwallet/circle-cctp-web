@@ -1,4 +1,22 @@
-import request from 'axios'
+import request, { AxiosResponse } from 'axios'
+interface Ops {
+  type: string
+  source_chain: string
+  token: string
+  amount: string
+  receiver: string
+  target_chain: string
+}
+interface Result {
+  category: string
+  detail: {
+    reply: string
+    ops: Ops[]
+  }
+}
+export interface AxiosResult extends AxiosResponse {
+  data: Result
+}
 
 export const circleAttestations = async (messageHash: string) => {
   return await request.get(
@@ -6,7 +24,9 @@ export const circleAttestations = async (messageHash: string) => {
   )
 }
 
-export const crossChainAbstraction = async (demand: string): Promise<any> => {
+export const crossChainAbstraction = async (
+  demand: string
+): Promise<AxiosResult> => {
   const data = { category: 'crossChainAbstraction', demand }
 
   const config = {
@@ -16,8 +36,8 @@ export const crossChainAbstraction = async (demand: string): Promise<any> => {
     headers: {},
     data,
   }
-
-  return await request(config)
+  const result: AxiosResult = await request(config)
+  return result
 }
 
 export const demandTransfer = async (demand: string) => {
