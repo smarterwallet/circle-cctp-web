@@ -88,12 +88,12 @@ const Demand: React.FC<{}> = () => {
   }
   const Chat = () => {
     return (
-      <div className="flex flex-col justify-between h-full w-full">
-        <div className="w-[480px] h-[85px] text-left text-[#0D5870] text-[72px] ml-[20px]">
+      <div className="flex h-full w-full flex-col justify-between">
+        <div className="ml-[20px] h-[85px] w-[480px] text-left text-[72px] text-[#0D5870]">
           Demand
         </div>
-        <div className="flex flex-col h-full mt-3">
-          <div className="overflow-auto max-h-[calc(80vh-250px)]">
+        <div className="mt-3 flex h-full flex-col">
+          <div className="max-h-[calc(80vh-250px)] overflow-auto">
             {context.map((item, index) => {
               return (
                 <div
@@ -119,15 +119,15 @@ const Demand: React.FC<{}> = () => {
             className="mb-4"
             style={{ position: 'fixed', bottom: 150, width: '90%' }}
           >
-            <div className="flex flex-raw space-x-1">
+            <div className="flex-raw flex space-x-1">
               <Input
                 ref={inputRef}
-                className="h-11 w-[85%] bg-white-500 input-message"
+                className="bg-white-500 input-message h-11 w-[85%]"
                 style={{ backgroundColor: 'white', fontSize: '60px' }}
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}
               />
-              <Button className="w-[60px] h-[66px]" onClick={handleSend}>
+              <Button className="h-[66px] w-[60px]" onClick={handleSend}>
                 Send
               </Button>
             </div>
