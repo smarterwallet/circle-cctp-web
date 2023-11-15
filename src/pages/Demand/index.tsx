@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useState, useEffect } from 'react'
 import { Button, Input } from 'antd-mobile'
 import './style.css'
@@ -5,37 +8,6 @@ import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
 import { crossChainAbstraction } from '../../../src/services/index'
-type Chain = 'Fuji' | 'Goerli'
-
-interface CrossChainTransfer {
-  type: 'cross-chain-transfer'
-  source_chain: Chain
-  token: string
-  amount: string
-  receiver: string
-  target_chain: Chain
-}
-
-interface ChainInternalTransfer {
-  type: 'chain-internal-transfer'
-  source_chain: Chain
-  token: string
-  amount: string
-  receiver: string
-  target_chain: Chain
-}
-
-type Operation = CrossChainTransfer | ChainInternalTransfer
-
-interface Detail {
-  reply: string
-  ops: Operation[]
-}
-
-interface Response {
-  category: string
-  detail: Detail
-}
 
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
@@ -46,13 +18,10 @@ const Demand: React.FC<{}> = () => {
   const { goerliUSDC } = useUSDCBalance()
   const { avaxUSDC } = useUSDCBalance()
 
-  console.log(`goerli ${goerliUSDC} avax ${avaxUSDC}`)
-
   const handleSend = async () => {
     if (!inputMessage) {
       return
     }
-    console.log(inputMessage)
     setContext((pre) => [
       ...pre,
       { text: inputMessage, type: 'question', button: false },
@@ -69,7 +38,6 @@ const Demand: React.FC<{}> = () => {
         ...pre,
         { text: reply, type: 'response', button: true },
       ])
-      console.log(context)
     } else {
       setContext((pre) => [
         ...pre,
@@ -84,16 +52,15 @@ const Demand: React.FC<{}> = () => {
   }
   useEffect(() => {
     setContext(() => context)
-    console.log(context)
   }, [context, ops])
   return (
     <PageLayout>
-      <div className="flex flex-col justify-between h-full w-full">
-        <div className="w-[480px] h-[85px] text-left text-[#0D5870] text-[72px] ml-[20px]">
+      <div className="flex h-full w-full flex-col justify-between">
+        <div className="ml-[20px] h-[85px] w-[480px] text-left text-[72px] text-[#0D5870]">
           Demand
         </div>
-        <div className="flex flex-col h-full mt-3">
-          <div className="overflow-auto max-h-[calc(100vh-250px)]">
+        <div className="mt-3 flex h-full flex-col">
+          <div className="max-h-[calc(100vh-250px)] overflow-auto">
             {context.map((item, index) => {
               return (
                 <div
@@ -117,9 +84,9 @@ const Demand: React.FC<{}> = () => {
             className="mb-4"
             style={{ position: 'fixed', bottom: 150, width: '90%' }}
           >
-            <div className="flex flex-raw space-x-1">
+            <div className="flex-raw flex space-x-1">
               <Input
-                className="h-11 w-full bg-white-500 input-message"
+                className="bg-white-500 input-message h-11 w-full"
                 style={{ backgroundColor: 'white', fontSize: '60px' }}
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}

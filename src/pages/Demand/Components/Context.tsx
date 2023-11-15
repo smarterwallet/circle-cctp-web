@@ -1,4 +1,5 @@
-import { Button, Input } from 'antd-mobile'
+/* eslint-disable no-console */
+import { Button } from 'antd-mobile'
 import '../style.css'
 
 interface ContextProp {
@@ -17,8 +18,9 @@ const Context = (props: ContextProp) => {
   return (
     <div>
       <div
-        className={`text-[#053346CC] bg-[#13B6EA4D] inline-block rounded-lg px-2 py-2
-        ${props.type === 'response' ? 'ml-auto' : 'mr-auto'}`}
+        className={`inline-block rounded-lg bg-[#13B6EA4D] p-2 text-[#053346CC]${
+          props.type === 'response' ? 'ml-auto' : 'mr-auto'
+        }`}
         style={{ fontSize: '36px' }}
       >
         {props.text}

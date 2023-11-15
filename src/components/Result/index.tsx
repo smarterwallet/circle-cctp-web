@@ -33,7 +33,7 @@ import TOKEN_MESSENGER_ABI from '../../abis/TokenMessenger.json'
 import MESSAGE_ABI from '../../abis/Message.json'
 import MESSAGE_TRANSMITTER_ABI from '../../abis/MessageTransmitter.json'
 import { keccak256, parseUnits } from 'viem'
-import { Result as Res } from 'antd-mobile'
+import { Result as Res, Toast } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -63,12 +63,6 @@ const Result: React.FC<Props> = ({
   const [step, setStep] = useState(0)
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
-
-  useEffect(() => {
-    if (chain?.id !== 5) {
-      switchNetwork?.(5)
-    }
-  }, [])
 
   const { data: bytesTransformResult } = useContractRead({
     address: GOERLI_MESSAGE_CONTRACT_ADDRESS,
@@ -188,6 +182,8 @@ const Result: React.FC<Props> = ({
   }
 
   const handleConfirm = () => {
+    if (chain?.id !== 5)
+      return Toast.show({ content: 'please switch to goerli network' })
     handleApprove()
     handleBurn()
   }

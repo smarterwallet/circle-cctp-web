@@ -7,19 +7,17 @@ export const circleAttestations = async (messageHash: string) => {
 }
 
 export const crossChainAbstraction = async (demand: string) => {
-  const data = { category: 'crossChainAbstraction', demand: demand }
+  const data = { category: 'crossChainAbstraction', demand }
 
   const config = {
     method: 'post',
     maxBodyLength: Infinity,
     url: 'https://smarter-api-da.web3idea.xyz/v1/demand',
     headers: {},
-    data: data,
+    data,
   }
 
-  const result = await request(config)
-  console.log(result)
-  return result
+  return await request(config)
 }
 
 // export const demandTransfer = async (demand: string) => {}
