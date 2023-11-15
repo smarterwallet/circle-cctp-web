@@ -32,8 +32,8 @@ import USDC_ABI from '../../abis/Usdc.json'
 import TOKEN_MESSENGER_ABI from '../../abis/TokenMessenger.json'
 import MESSAGE_ABI from '../../abis/Message.json'
 import MESSAGE_TRANSMITTER_ABI from '../../abis/MessageTransmitter.json'
-import { keccak256 } from 'viem'
-import { Result as Res } from 'antd-mobile'
+import { keccak256, parseUnits } from 'viem'
+import { Result as Res, Toast } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -41,7 +41,7 @@ type Props = {
   title: string
   transactionDetail: {
     receiver: string
-    amount: number
+    amount: number | string
     token?: string
   }
   extra?: React.ReactNode
@@ -64,12 +64,6 @@ const Result: React.FC<Props> = ({
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  useEffect(() => {
-    if (chain?.id !== 5) {
-      switchNetwork?.(5)
-    }
-  }, [])
-
   const { data: bytesTransformResult } = useContractRead({
     address: GOERLI_MESSAGE_CONTRACT_ADDRESS,
     abi: MESSAGE_ABI,
@@ -80,7 +74,7 @@ const Result: React.FC<Props> = ({
     address: GOERLI_USDC_ADDR,
     abi: USDC_ABI,
     functionName: 'approve',
-    args: [GOERLI_TOKEN_MESSENGER_CONTRACT_ADDRESS, amount],
+    args: [GOERLI_TOKEN_MESSENGER_CONTRACT_ADDRESS, parseUnits(`${amount}`, 6)],
   })
 
   const { write: approve, isLoading: isApproveLoading } =
@@ -91,7 +85,7 @@ const Result: React.FC<Props> = ({
     abi: TOKEN_MESSENGER_ABI,
     functionName: 'depositForBurn',
     args: [
-      amount,
+      parseUnits(`${amount}`, 6),
       AVAX_DESTINATION_DOMAIN,
       bytesTransformResult,
       GOERLI_USDC_ADDR,
@@ -188,6 +182,8 @@ const Result: React.FC<Props> = ({
   }
 
   const handleConfirm = () => {
+    if (chain?.id !== 5)
+      return Toast.show({ content: 'please switch to goerli network' })
     handleApprove()
     handleBurn()
   }

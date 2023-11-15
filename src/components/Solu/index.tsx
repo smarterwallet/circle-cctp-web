@@ -8,7 +8,7 @@ import { DownOutline } from 'antd-mobile-icons'
 type Props = {
   transactionDetail: {
     receiver: string
-    amount: number
+    amount: number | string
     token?: string
   }
 }
