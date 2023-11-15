@@ -57,7 +57,7 @@ const Demand: React.FC<{}> = () => {
     const result = await crossChainAbstraction(demandInput)
     if (result !== null) {
       const reply = result.data.detail.reply as string
-      const ops = result.data.detail.ops 
+      const ops = result.data.detail.ops
       setReceiver(() => ops[0].receiver)
       setAmount(() => parseInt(ops[0].amount, 10))
       setOps(() => ops)
