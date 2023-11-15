@@ -58,8 +58,8 @@ const Demand: React.FC<{}> = () => {
     if (result !== null) {
       const reply: string = result.data.detail.reply
       const ops: Ops[] = result.data.detail.ops
-      setReceiver(() => ops[0].receiver)
-      setAmount(() => parseInt(ops[0].amount, 10))
+      setReceiver(() => ops?.[0]?.receiver || 'unknown')
+      setAmount(() => parseInt(ops?.[0]?.amount || '0', 10))
       setOps(() => ops)
       setContext((pre: contextProp[]) => [
         ...pre,
@@ -78,11 +78,11 @@ const Demand: React.FC<{}> = () => {
     setInputMessage(() => '')
   }
   const confirmTx = (op: Ops) => {
-    if (op.type === 'chain-internal-transfer') {
-      const receiver = op.receiver.slice(2)
-      const amount = BigInt(parseInt(op.amount, 10) * 1e18)
+    if (op?.type === 'chain-internal-transfer') {
+      const receiver = op?.receiver.slice(2)
+      const amount = BigInt(parseInt(op?.amount, 10) * 1e18)
       write({ args: [`0x${receiver}`, amount] })
-    } else if (op.type === 'cross-chain-transfer') {
+    } else if (op?.type === 'cross-chain-transfer') {
       setSwitchTx((pre) => !pre)
     }
   }
@@ -92,14 +92,14 @@ const Demand: React.FC<{}> = () => {
         <div className="h-16 w-full text-left text-4xl text-[#0D5870]">
           Demand
         </div>
-        <div className="mt-1 flex h-full flex-col">
-          <div className="max-h-[calc(80vh-250px)] overflow-auto">
+        <div className="mt-1 flex h-full flex-col ">
+          <div className="max-h-[calc(80vh-180px)] overflow-auto">
             {context.map((item, index) => {
               return (
                 <div
                   className={`flex ${
                     item.type === 'response' ? 'justify-start' : 'justify-end'
-                  }`}
+                  } pr-4`}
                   key={index}
                 >
                   <Context
@@ -108,13 +108,12 @@ const Demand: React.FC<{}> = () => {
                     type={item.type}
                     button={item.button}
                     confirmTx={confirmTx}
-                    op={ops[0]}
+                    op={ops?.[0]}
                   />
                 </div>
               )
             })}
           </div>
-
           <div
             className="mb-4"
             style={{ position: 'fixed', bottom: 150, width: '90%' }}
@@ -127,7 +126,7 @@ const Demand: React.FC<{}> = () => {
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}
               />
-              <Button className="h-9 w-11" onClick={handleSend}>
+              <Button className="h-9 w-36" onClick={handleSend}>
                 Send
               </Button>
             </div>
