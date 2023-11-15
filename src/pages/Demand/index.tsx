@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Input } from 'antd-mobile'
+import React, { useState, useRef, useEffect } from 'react'
+import { Button, Input, InputRef } from 'antd-mobile'
 import './style.css'
 import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
@@ -12,6 +12,8 @@ import Solution from 'components/Solu'
 import { useContractWrite } from 'wagmi'
 import { erc20ABI } from '@wagmi/core'
 import { EUsdcAddress } from 'types'
+import { SendIcon } from 'assets'
+
 interface Ops {
   type: string
   source_chain: string
@@ -38,14 +40,12 @@ const Demand: React.FC<{}> = () => {
   })
   const [receiver, setReceiver] = useState('')
   const [amount, setAmount] = useState(0)
-
-  console.log(`goerli ${goerliUSDC} avax ${avaxUSDC}`)
+  const inputRef = useRef<InputRef>(null)
 
   const handleSend = async () => {
     if (!inputMessage) {
       return
     }
-    console.log(inputMessage)
     setContext((pre) => [
       ...pre,
       { text: inputMessage, type: 'question', button: false },
@@ -93,7 +93,7 @@ const Demand: React.FC<{}> = () => {
           Demand
         </div>
         <div className="flex flex-col h-full mt-3">
-          <div className="overflow-auto max-h-[calc(100vh-250px)]">
+          <div className="overflow-auto max-h-[calc(80vh-250px)]">
             {context.map((item, index) => {
               return (
                 <div
@@ -121,18 +121,26 @@ const Demand: React.FC<{}> = () => {
           >
             <div className="flex flex-raw space-x-1">
               <Input
-                className="h-11 w-full bg-white-500 input-message"
+                ref={inputRef}
+                className="h-11 w-[85%] bg-white-500 input-message"
                 style={{ backgroundColor: 'white', fontSize: '60px' }}
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}
               />
-              <Button onClick={handleSend}>send</Button>
+              <Button className="w-[60px] h-[66px]" onClick={handleSend}>
+                Send
+              </Button>
             </div>
           </div>
         </div>
       </div>
     )
   }
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [inputMessage])
   return (
     <PageLayout>
       {switchTx ? (

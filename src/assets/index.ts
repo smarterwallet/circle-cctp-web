@@ -10,6 +10,7 @@ import HomeBg from './home-bg.png'
 import UsdcIcon from './usdc.png'
 import CircleIcon from './circle-icon 1.png'
 import TransferIcon from './transfer-cion.png'
+import SendIcon from './paper-plane.png'
 
 export {
   IosAppsIcon,
@@ -24,4 +25,5 @@ export {
   UsdcIcon,
   CircleIcon,
   TransferIcon,
+  SendIcon,
 }
