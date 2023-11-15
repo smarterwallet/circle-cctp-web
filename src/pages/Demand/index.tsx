@@ -8,6 +8,19 @@ import {
   crossChainAbstraction,
   demandTransfer,
 } from '../../../src/services/index'
+import Solution from 'components/Solu'
+import { useContractWrite } from 'wagmi'
+import { erc20ABI } from '@wagmi/core'
+import { EUsdcAddress } from 'types'
+interface Ops {
+  type: string
+  source_chain: string
+  token: string
+  amount: string
+  receiver: string
+  target_chain: string
+}
+type HexString = string
 
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
@@ -17,6 +30,14 @@ const Demand: React.FC<{}> = () => {
   const [ops, setOps] = useState([])
   const { goerliUSDC } = useUSDCBalance()
   const { avaxUSDC } = useUSDCBalance()
+  const [switchTx, setSwitchTx] = useState(false)
+  const { data, isLoading, isSuccess, write } = useContractWrite({
+    address: EUsdcAddress.Goerli,
+    abi: erc20ABI,
+    functionName: 'transfer',
+  })
+  const [receiver, setReceiver] = useState('')
+  const [amount, setAmount] = useState(0)
 
   console.log(`goerli ${goerliUSDC} avax ${avaxUSDC}`)
 
@@ -36,6 +57,8 @@ const Demand: React.FC<{}> = () => {
     if (result !== null) {
       const reply = result.data.detail.reply
       const ops = result.data.detail.ops
+      setReceiver(() => ops[0].receiver)
+      setAmount(() => parseInt(ops[0].amount, 10))
       setOps(() => ops)
       setContext((pre) => [
         ...pre,
@@ -54,12 +77,17 @@ const Demand: React.FC<{}> = () => {
     }
     setInputMessage(() => '')
   }
-  const confirmTx = () => {
-    // const txInput = `Goerli balance: ${goerliUSDC}USDC, Fuji balance: ${avaxUSDC}USDC. I want to transfer 100USDC to Fuji 0x5134F00C95b8e794db38E1eE39397d8086cee7Ed`
-    // demandTransfer(txInput)
+  const confirmTx = (op: Ops) => {
+    if (op.type === 'chain-internal-transfer') {
+      const receiver = op.receiver.slice(2)
+      const amount = BigInt(parseInt(op.amount, 10) * 1e18)
+      write({ args: [`0x${receiver}`, amount] })
+    } else if (op.type === 'cross-chain-transfer') {
+      setSwitchTx((pre) => !pre)
+    }
   }
-  return (
-    <PageLayout>
+  const Chat = () => {
+    return (
       <div className="flex flex-col justify-between h-full w-full">
         <div className="w-[480px] h-[85px] text-left text-[#0D5870] text-[72px] ml-[20px]">
           Demand
@@ -80,6 +108,7 @@ const Demand: React.FC<{}> = () => {
                     type={item.type}
                     button={item.button}
                     confirmTx={confirmTx}
+                    op={ops[0]}
                   />
                 </div>
               )
@@ -102,6 +131,15 @@ const Demand: React.FC<{}> = () => {
           </div>
         </div>
       </div>
+    )
+  }
+  return (
+    <PageLayout>
+      {switchTx ? (
+        <Solution transactionDetail={{ receiver, amount }} />
+      ) : (
+        <Chat />
+      )}
     </PageLayout>
   )
 }
