@@ -1,12 +1,38 @@
+.demand-btn-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .demand-btn {
   display: flex;
   width: 45%;
+  opacity: 60%;
+  height: 70px;
+  margin-top: 10px;
   flex-direction: row;
   align-items: center;
   border-radius: 10px;
   font-weight: bold;
   align-items: center;
   justify-content: center;
+}
+
+.sel-demand-btn {
+  display: flex;
+  width: 45%;
+  height: 70px;
+  opacity: 100%;
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
 
 .btn-txt {
@@ -17,11 +43,13 @@
 
 .bottom-btn {
   display: flex;
-  height: 50px;
+  height: 60px;
   color: #053346;
   font-size: 18px;
+  opacity: 70%;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  border-radius: 25px;
+  border-radius: 30px;
 }

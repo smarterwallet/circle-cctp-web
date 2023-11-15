@@ -1,10 +1,49 @@
-import React from 'react'
 import './index.css'
+import React, { useState } from 'react'
 import { Card, Image } from 'antd-mobile'
 import { RightOutline } from 'antd-mobile-icons'
 import { Ticket, Transfer, Trade, Security, Key } from '../../assets'
 
 const Demand: React.FC<{}> = () => {
+  const [btnList, setBtnList] = useState([
+    {
+      btnText: 'Token Transfer',
+      btnImage: Transfer,
+      btnWidth: 38,
+      btnHeight: 33,
+      btnSelected: false,
+    },
+    {
+      btnText: 'Trade to Earn',
+      btnImage: Trade,
+      btnWidth: 40,
+      btnHeight: 35,
+      btnSelected: false,
+    },
+    {
+      btnText: 'Login & Recovery',
+      btnImage: Key,
+      btnWidth: 40,
+      btnHeight: 30,
+      btnSelected: false,
+    },
+    {
+      btnText: 'Security & Privacy',
+      btnImage: Security,
+      btnWidth: 50,
+      btnHeight: 30,
+      btnSelected: false,
+    },
+  ])
+
+  const btnClick = (index: number) => {
+    setBtnList((prevBtnList) =>
+      prevBtnList.map((item, i) => ({
+        ...item,
+        btnSelected: i === index,
+      }))
+    )
+  }
   return (
     <>
       <div className="mb-8 flex space-x-2">
@@ -25,7 +64,7 @@ const Demand: React.FC<{}> = () => {
         style={{ borderRadius: '16px' }}
       >
         <div className="flex flex-row items-center justify-between">
-          <Image src={Ticket} className="mb-2" height={90} width={118} />
+          <Image src={Ticket} className="mb-2" height={70} width={88} />
           <div
             className="text-left text-xl"
             style={{
@@ -142,31 +181,31 @@ const Demand: React.FC<{}> = () => {
           </div>
         </div>
       </Card>
-      <div className="mt-10 flex flex-row items-center justify-around">
-        <div className="demand-btn">
-          <Image src={Transfer} height={33} width={38} />
-          <div className="btn-txt">Token Transfer</div>
-        </div>
-        <div className="demand-btn">
-          <Image src={Trade} height={35} width={40} />
-          <div className="btn-txt">Trade to Earn</div>
-        </div>
-      </div>
-      <div className="mt-10 flex flex-row items-center justify-around">
-        <div className="demand-btn">
-          <Image src={Key} height={30} width={40} />
-          <div className="btn-txt">Login & Recovery</div>
-        </div>
-        <div className="demand-btn">
-          <Image src={Security} height={40} width={60} />
-          <div className="btn-txt">Security & Privacy</div>
-        </div>
+      <div className="demand-btn-list mt-10 flex flex-row items-center justify-around">
+        {btnList.map((item, index) => (
+          <div
+            key={item.btnText}
+            className={item.btnSelected ? 'sel-demand-btn' : 'demand-btn'}
+            onClick={() => {
+              btnClick(index)
+            }}
+          >
+            <Image
+              className="ml-3"
+              src={item.btnImage}
+              height={item.btnHeight}
+              width={item.btnWidth}
+            />
+            <div className="btn-txt">{item.btnText}</div>
+          </div>
+        ))}
       </div>
       <div
         className="mt-10 flex flex-row"
         style={{
+          opacity: '50%',
           fontWeight: 'bold',
-          fontSize: '18px',
+          fontSize: '20px',
           color: '#0A3D53',
         }}
       >
