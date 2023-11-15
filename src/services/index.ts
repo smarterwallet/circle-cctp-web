@@ -1,4 +1,22 @@
-import request from 'axios'
+import request, { AxiosResponse } from 'axios'
+interface Ops {
+  type: string
+  source_chain: string
+  token: string
+  amount: string
+  receiver: string
+  target_chain: string
+}
+interface Result {
+  category: string
+  detail: {
+    reply: string
+    ops: Ops[]
+  }
+}
+export interface AxiosResult extends AxiosResponse {
+  data: Result
+}
 
 export const circleAttestations = async (messageHash: string) => {
   return await request.get(
@@ -6,8 +24,24 @@ export const circleAttestations = async (messageHash: string) => {
   )
 }
 
-export const crossChainAbstraction = async (demand: string) => {
+export const crossChainAbstraction = async (
+  demand: string
+): Promise<AxiosResult> => {
   const data = { category: 'crossChainAbstraction', demand }
+
+  const config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://smarter-api-da.web3idea.xyz/v1/demand',
+    headers: {},
+    data,
+  }
+  const result: AxiosResult = await request(config)
+  return result
+}
+
+export const demandTransfer = async (demand: string) => {
+  const data = { category: 'chainAbstraction-transfer', demand }
 
   const config = {
     method: 'post',
@@ -19,5 +53,3 @@ export const crossChainAbstraction = async (demand: string) => {
 
   return await request(config)
 }
-
-// export const demandTransfer = async (demand: string) => {}
