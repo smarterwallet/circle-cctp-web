@@ -25,13 +25,15 @@ const Context = (props: ContextProp) => {
   return (
     <div className="w-full overflow-x-hidden">
       <div
-        className={`max-w-fullmx-1 my-1 inline-block bg-[#13B6EA4D] text-[#053346CC] ${
+        className={`m-1 inline-block max-w-full text-lg text-[#053346CC] ${
           props.type === 'response' ? 'rounded-r-lg' : 'rounded-l-lg'
         } p-2
         ${
           props.type === 'response' ? 'ml-auto' : 'mr-auto'
-        } max-w-full overflow-auto break-words `}
-        style={{ fontSize: '36px' }}
+        } max-w-full overflow-auto break-words 
+        
+        ${props.type === 'response' ? 'bg-[#1e83a54d]' : 'bg-[#73c5dd4d]'}
+        `}
       >
         {props.text}
       </div>

@@ -89,10 +89,10 @@ const Demand: React.FC<{}> = () => {
   const Chat = () => {
     return (
       <div className="flex h-full w-full flex-col justify-between">
-        <div className="ml-[20px] h-[85px] w-[480px] text-left text-[72px] text-[#0D5870]">
+        <div className="h-16 w-full text-left text-4xl text-[#0D5870]">
           Demand
         </div>
-        <div className="mt-3 flex h-full flex-col">
+        <div className="mt-1 flex h-full flex-col">
           <div className="max-h-[calc(80vh-250px)] overflow-auto">
             {context.map((item, index) => {
               return (
@@ -122,12 +122,12 @@ const Demand: React.FC<{}> = () => {
             <div className="flex-raw flex space-x-1">
               <Input
                 ref={inputRef}
-                className="bg-white-500 input-message h-11 w-[85%]"
+                className="bg-white-500 input-message h-9 w-52"
                 style={{ backgroundColor: 'white', fontSize: '60px' }}
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}
               />
-              <Button className="h-[66px] w-[60px]" onClick={handleSend}>
+              <Button className="h-9 w-11" onClick={handleSend}>
                 Send
               </Button>
             </div>
@@ -141,6 +141,7 @@ const Demand: React.FC<{}> = () => {
       inputRef.current.focus()
     }
   }, [inputMessage])
+
   return (
     <PageLayout>
       {switchTx ? (

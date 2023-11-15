@@ -4,7 +4,7 @@ interface PageLayoutProps {
 
 const PageLayout = ({ children }: PageLayoutProps) => (
   <>
-    <div className="h-full overflow-auto px-8 py-4">{children}</div>
+    <div className="h-full overflow-auto p-2">{children}</div>
   </>
 )
 
