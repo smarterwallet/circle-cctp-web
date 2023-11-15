@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd-mobile'
+import { Button } from 'antd-mobile'
 import '../style.css'
 
 interface Ops {
@@ -20,11 +20,7 @@ interface ContextProp {
 
 const Context = (props: ContextProp) => {
   const handleConfirm = () => {
-    console.log('confirm')
     props.confirmTx(props.op)
-  }
-  const handleChange = () => {
-    console.log('change')
   }
   return (
     <div className="w-full overflow-x-hidden">
@@ -44,7 +40,6 @@ const Context = (props: ContextProp) => {
           <Button
             className="demand-button"
             style={{ backgroundColor: 'white' }}
-            onClick={handleChange}
           >
             Change
           </Button>

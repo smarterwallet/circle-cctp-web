@@ -4,15 +4,11 @@ import './style.css'
 import PageLayout from 'layouts/PageLayout'
 import Context from './Components/Context'
 import { useUSDCBalance } from 'hooks/useUsdcBalance'
-import {
-  crossChainAbstraction,
-  demandTransfer,
-} from '../../../src/services/index'
+import { crossChainAbstraction } from '../../../src/services/index'
 import Solution from 'components/Solu'
 import { useContractWrite } from 'wagmi'
 import { erc20ABI } from '@wagmi/core'
 import { EUsdcAddress } from 'types'
-import { SendIcon } from 'assets'
 
 interface Ops {
   type: string
@@ -22,7 +18,12 @@ interface Ops {
   receiver: string
   target_chain: string
 }
-type HexString = string
+
+interface contextProp {
+  text: string
+  type: string
+  button: boolean
+}
 
 const Demand: React.FC<{}> = () => {
   const [inputMessage, setInputMessage] = useState<string>('')
@@ -33,7 +34,7 @@ const Demand: React.FC<{}> = () => {
   const { goerliUSDC } = useUSDCBalance()
   const { avaxUSDC } = useUSDCBalance()
   const [switchTx, setSwitchTx] = useState(false)
-  const { data, isLoading, isSuccess, write } = useContractWrite({
+  const { write } = useContractWrite({
     address: EUsdcAddress.Goerli,
     abi: erc20ABI,
     functionName: 'transfer',
@@ -46,7 +47,7 @@ const Demand: React.FC<{}> = () => {
     if (!inputMessage) {
       return
     }
-    setContext((pre) => [
+    setContext((pre: contextProp[]) => [
       ...pre,
       { text: inputMessage, type: 'question', button: false },
     ])
@@ -55,16 +56,15 @@ const Demand: React.FC<{}> = () => {
       inputMessage
     const result = await crossChainAbstraction(demandInput)
     if (result !== null) {
-      const reply = result.data.detail.reply
-      const ops = result.data.detail.ops
+      const reply = result.data.detail.reply as string
+      const ops = result.data.detail.ops 
       setReceiver(() => ops[0].receiver)
       setAmount(() => parseInt(ops[0].amount, 10))
       setOps(() => ops)
-      setContext((pre) => [
+      setContext((pre: contextProp[]) => [
         ...pre,
         { text: reply, type: 'response', button: true },
       ])
-      console.log(context)
     } else {
       setContext((pre) => [
         ...pre,

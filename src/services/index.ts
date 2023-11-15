@@ -6,7 +6,7 @@ export const circleAttestations = async (messageHash: string) => {
   )
 }
 
-export const crossChainAbstraction = async (demand: string) => {
+export const crossChainAbstraction = async (demand: string): Promise<any> => {
   const data = { category: 'crossChainAbstraction', demand }
 
   const config = {
@@ -17,9 +17,7 @@ export const crossChainAbstraction = async (demand: string) => {
     data,
   }
 
-  const result = await request(config)
-  console.log(result)
-  return result
+  return await request(config)
 }
 
 export const demandTransfer = async (demand: string) => {
@@ -33,7 +31,5 @@ export const demandTransfer = async (demand: string) => {
     data,
   }
 
-  const result = await request(config)
-  console.log(result)
-  return result
+  return await request(config)
 }
