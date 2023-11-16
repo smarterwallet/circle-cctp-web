@@ -19,11 +19,11 @@ const TransactionDetail: React.FC<{}> = (props: Props) => {
         </div>
         <div className="mt-8 flex justify-between">
           <div className=" flex-1 text-center">
-            <div className="text-base text-redhot-400">-100</div>
+            <div className="text-base text-redhot-400">0</div>
             <div className="text-lg text-circle-green">Past Day</div>
           </div>
           <div className=" flex-1 text-center">
-            <div className="text-base text-apple-400">+2.49</div>
+            <div className="text-base text-apple-400">0</div>
             <div className="text-lg text-circle-green">In Total</div>
           </div>
         </div>
