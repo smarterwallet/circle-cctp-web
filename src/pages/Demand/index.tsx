@@ -56,6 +56,18 @@ const Demand: React.FC<{}> = () => {
       inputMessage
     const result: AxiosResult = await crossChainAbstraction(demandInput)
     if (result !== null) {
+      if (result.data.detail.ops === null) {
+        setContext((pre) => [
+          ...pre,
+          {
+            text: 'Sorry, insuffienct balance',
+            type: 'response',
+            button: false,
+          },
+        ])
+        setInputMessage(() => '')
+        return
+      }
       const reply: string = result.data.detail.reply
       const ops: Ops[] = result.data.detail.ops
       setReceiver(() => ops?.[0]?.receiver || 'unknown')
@@ -64,15 +76,6 @@ const Demand: React.FC<{}> = () => {
       setContext((pre: contextProp[]) => [
         ...pre,
         { text: reply, type: 'response', button: true },
-      ])
-    } else {
-      setContext((pre) => [
-        ...pre,
-        {
-          text: 'Sorry, insuffienct balance',
-          type: 'response',
-          button: false,
-        },
       ])
     }
     setInputMessage(() => '')
@@ -126,7 +129,7 @@ const Demand: React.FC<{}> = () => {
                 value={inputMessage}
                 onChange={(value) => setInputMessage(value)}
               />
-              <Button className="h-9 w-36" onClick={handleSend}>
+              <Button className="w-18 h-9" onClick={handleSend}>
                 Send
               </Button>
             </div>
