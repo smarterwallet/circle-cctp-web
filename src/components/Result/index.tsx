@@ -251,7 +251,7 @@ const Result: React.FC<Props> = ({
                     Transaction fees
                   </span>
                   <span className=" ml-6 text-circle-green">
-                    {/* {transactionFees} */}unknown
+                    {/* {transactionFees} */}0
                   </span>
                 </div>
               </div>
